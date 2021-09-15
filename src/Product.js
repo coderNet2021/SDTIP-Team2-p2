@@ -4,15 +4,15 @@ function Product() {
     const data =[{
         id:1,
         name:"test1",
-        image:"img1"
+        image:"https://img.joomcdn.net/8351b650a2bde8ce3d0bc029d219afafedad09c6_original.jpeg"
     },{
         id:2,
         name:"test2",
-        image:"img2"
+        image:"https://5.imimg.com/data5/SELLER/Default/2020/9/KK/WE/FQ/37262215/25-1-500x500.PNG"
     },{
         id:3,
         name:"test3",
-        image:"img3"
+        image:"https://images-na.ssl-images-amazon.com/images/I/617cgSGZ3eL.jpg"
     }]
   const [product,setProduct]=useState(data);
 //   const clickHandler = ()=>{

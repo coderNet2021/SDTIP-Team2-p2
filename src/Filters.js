@@ -7,20 +7,30 @@ function Filters() {
 //   const clickHandler = ()=>{
 //     setProduct([]);
 //   }
+const [test,setTest]=useState('');
 const [startDate, setStartDate] = useState(new Date());
 const [endDate, setEndDate] = useState(new Date());
 
+const changeGeneralSearchHandler=(e)=>{
+    setTest(e.target.value)
+    // setTest(test);
+}
 const submitHandler=(e)=>{
 e.preventDefault();
+// setTest('hello lili');
+console.log(test);
 console.log('test prevented default')
+setTest('');
 }
+
+
   return <main><section className="filters">
    <div>
           <div className=" register-form form">
             <div className="note">
               <p>Kidzi SDTIP TEAM 2</p>
             </div>
-            <form onSubmit={submitHandler}>
+            <form >
               <div className="form-content">
                 <div className="row">
 
@@ -124,11 +134,11 @@ console.log('test prevented default')
 
   <div className="form-group col-md-6 mb-3">
     <label htmlFor="generalSearch">General Search</label>
-    <input type="text" className="form-control" id="generalSearch" placeholder="search" />
+    <input type="text" className="form-control" id="generalSearch" onChange={changeGeneralSearchHandler} value={test}  placeholder="search" />
   </div>
 
                 </div>
-                <button type="button" className="btn">search</button>
+                <button type="button" className="btn" onClick={submitHandler}>search</button>
               </div>
             </form>
           </div>
