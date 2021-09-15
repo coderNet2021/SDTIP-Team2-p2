@@ -1,25 +1,13 @@
 const mongoose = require("mongoose");
 
 const CategorySchema = new mongoose.Schema({
-  fullName: {
+  name: {
     type: String,
     required: true,
   },
-  username: {
+  description: {
     type: String,
     required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  date: {
-    type: Date,
-    default: Date.now,
   },
 });
 
