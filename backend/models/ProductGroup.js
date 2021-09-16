@@ -1,7 +1,7 @@
 const { findAllByTestId } = require("@testing-library/dom");
 const mongoose = require("mongoose");
 
-const ProductGroup = new mongoose.Schema({
+const ProductGroupSchema = new mongoose.Schema({
   
   description: {
     type: String,
@@ -13,4 +13,5 @@ const ProductGroup = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("ProductGroup", ProductGroup);
+const ProductGroup = mongoose.model("ProductGroup", ProductGroupSchema);
+module.exports =ProductGroup;

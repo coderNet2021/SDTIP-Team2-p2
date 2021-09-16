@@ -14,12 +14,18 @@ const [test,setTest]=useState('');
 const [startDate, setStartDate] = useState(new Date());
 const [endDate, setEndDate] = useState(new Date());
 const [categoryList,setCategoryList]=useState([]);
+const [productGroup,setproductGroup]=useState([]);
 
 
 useEffect(() => {
   categoryListAsync()
    .then(resp => setCategoryList(resp))
   }, [])
+
+  useEffect(() => {
+    productGroupListAsync()
+     .then(resp => setproductGroup(resp))
+    }, [])
 
 
 const changeGeneralSearchHandler=(e)=>{
@@ -38,6 +44,12 @@ setTest('');
 const categoryListAsync=async ()=>{
   const categoryList=await axios.get("http://localhost:4230/app/v1/sales/allCategories");
   return categoryList.data.data.categories;
+}
+
+const productGroupListAsync=async ()=>{
+  const productGroupList=await axios.get("http://localhost:4230/app/v1/sales/allProductGroup");
+  //console.log(productGroupList.data.data.productGroups)
+  return productGroupList.data.data.productGroups;
 }
 
   return <main><section className="filters">
@@ -76,10 +88,10 @@ const categoryListAsync=async ()=>{
     <label htmlFor="productGroup" >Product Group</label>
     <select className="form-control" id="productGroup">
       <option>--choose--</option>
-      <option>product 1</option>
-      <option>product 2</option>
-      <option>product 3</option>
-      <option>product 4</option>
+      {productGroup.map(el=>{
+        const {_id,name,description}=el;
+        return <option key={_id}>{name} , {description}</option>
+      })}
     </select>
   </div>
 
