@@ -10,5 +10,5 @@ const DesignerSchema = new mongoose.Schema({
     required: true,
   },
 });
-
-module.exports = mongoose.model("Designer", DesignerSchema);
+const Designer = mongoose.model("Designer", DesignerSchema);
+module.exports =Designer;

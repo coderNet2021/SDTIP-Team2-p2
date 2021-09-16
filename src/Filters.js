@@ -15,18 +15,28 @@ const [startDate, setStartDate] = useState(new Date());
 const [endDate, setEndDate] = useState(new Date());
 const [categoryList,setCategoryList]=useState([]);
 const [productGroup,setproductGroup]=useState([]);
-
+const [designer,setDesigner]=useState([]);
+const [ageGroup,setAgeGroup]=useState([]);
 
 useEffect(() => {
   categoryListAsync()
    .then(resp => setCategoryList(resp))
   }, [])
 
-  useEffect(() => {
+useEffect(() => {
     productGroupListAsync()
      .then(resp => setproductGroup(resp))
     }, [])
 
+    useEffect(() => {
+      designerListAsync()
+       .then(resp => setDesigner(resp))
+      }, [])
+
+      useEffect(() => {
+        ageGroupListAsync()
+         .then(resp => setAgeGroup(resp))
+        }, [])
 
 const changeGeneralSearchHandler=(e)=>{
     setTest(e.target.value)
@@ -50,6 +60,18 @@ const productGroupListAsync=async ()=>{
   const productGroupList=await axios.get("http://localhost:4230/app/v1/sales/allProductGroup");
   //console.log(productGroupList.data.data.productGroups)
   return productGroupList.data.data.productGroups;
+}
+
+const designerListAsync=async()=>{
+  const designerList=await axios.get("http://localhost:4230/app/v1/sales/allDesigners");
+  // console.log(designerList.data.data.designers)
+  return designerList.data.data.designers;
+}
+
+const ageGroupListAsync=async()=>{
+  const ageGroupList=await axios.get("http://localhost:4230/app/v1/sales/allAgeGroup");
+   console.log(ageGroupList.data.data.ageGroups)
+  return ageGroupList.data.data.ageGroups;
 }
 
   return <main><section className="filters">
@@ -108,13 +130,10 @@ const productGroupListAsync=async ()=>{
     <label htmlFor="ageGroup" >Age Group</label>
     <select className="form-control" id="ageGroup">
       <option>--choose--</option>
-      <option>0-12 months</option>
-      <option>13-18 months</option>
-      <option>19-24 months</option>
-      <option>2-4 years</option>
-      <option>2-4 years</option>
-      <option>2-4 years</option>
-      <option>2-4 years</option>
+      {ageGroup.map(el=>{
+        const {_id,name,description}=el;
+        return <option key={_id}>{name} , {description}</option>
+      })}
     </select>
   </div>
 
@@ -139,10 +158,10 @@ const productGroupListAsync=async ()=>{
     <label htmlFor="designer" >Designer</label>
     <select className="form-control" id="designer">
       <option>--choose--</option>
-      <option>Designer 1</option>
-      <option>Designer 2</option>
-      <option>Designer 3</option>
-      <option>Designer 4</option>
+      {designer.map(el=>{
+        const {_id,name,description}=el;
+        return <option key={_id}>{name} , {description}</option>
+      })}
       
     </select>
   </div>

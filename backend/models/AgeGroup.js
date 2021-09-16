@@ -11,4 +11,5 @@ const AgeGroupSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("AgeGroup", AgeGroupSchema);
+const AgeGroup = mongoose.model("AgeGroup", AgeGroupSchema);
+module.exports =AgeGroup;
