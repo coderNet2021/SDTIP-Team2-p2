@@ -11,6 +11,9 @@ function Filters() {
 
 
 const [test,setTest]=useState('');
+const [kidzieId,setKidzieId]=useState('');
+const [salesPercent,setSalesPercent]=useState('');
+
 const [startDate, setStartDate] = useState(new Date());
 const [endDate, setEndDate] = useState(new Date());
 const [categoryList,setCategoryList]=useState([]);
@@ -42,12 +45,27 @@ const changeGeneralSearchHandler=(e)=>{
     setTest(e.target.value)
     // setTest(test);
 }
+const changeKidzieIdHandler=(e)=>{
+  setKidzieId(e.target.value);
+}
+
+const changeSalesPercentHandler=(e)=>{
+  setSalesPercent(e.target.value);
+}
+
+const clear=()=>{
+  setTest('');
+  setKidzieId('');
+  setSalesPercent('');
+}
+
 const submitHandler=(e)=>{
 e.preventDefault();
 // setTest('hello lili');
-console.log(test);
+console.log(test,salesPercent,kidzieId,startDate.toISOString(),endDate.toISOString());
 console.log('test prevented default')
-setTest('');
+clear();
+
 }
 
 
@@ -86,7 +104,7 @@ const ageGroupListAsync=async()=>{
 
                 <div className="form-group col-md-6 mb-3">
                 <label htmlFor="kidzieId">Kidzie ID</label>
-                <input type="text" className="form-control" id="kidzieId" placeholder="Kidzie Id" />
+                <input type="text" className="form-control" id="kidzieId" onChange={changeKidzieIdHandler} value={kidzieId}  placeholder="Kidzie Id" />
                 </div>
 
   <div className="form-group col-md-6 mb-3">
@@ -139,7 +157,7 @@ const ageGroupListAsync=async()=>{
 
   <div className="form-group col-md-6 mb-3">
     <label htmlFor="salesPercent" >sale %</label>
-    <input type='text' className="form-control" id="salesPercent">
+    <input type='text' className="form-control" id="salesPercent" onChange={changeSalesPercentHandler} value={salesPercent} placeholder="sales %">
       
     </input>
   </div>
