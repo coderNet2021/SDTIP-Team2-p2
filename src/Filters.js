@@ -70,7 +70,7 @@ const designerListAsync=async()=>{
 
 const ageGroupListAsync=async()=>{
   const ageGroupList=await axios.get("http://localhost:4230/app/v1/sales/allAgeGroup");
-   console.log(ageGroupList.data.data.ageGroups)
+   //console.log(ageGroupList.data.data.ageGroups)
   return ageGroupList.data.data.ageGroups;
 }
 
