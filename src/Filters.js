@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
+import axios from 'axios';
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,9 +8,19 @@ function Filters() {
 //   const clickHandler = ()=>{
 //     setProduct([]);
 //   }
+
+
 const [test,setTest]=useState('');
 const [startDate, setStartDate] = useState(new Date());
 const [endDate, setEndDate] = useState(new Date());
+const [categoryList,setCategoryList]=useState([]);
+
+
+useEffect(() => {
+  categoryListAsync()
+   .then(resp => setCategoryList(resp))
+  }, [])
+
 
 const changeGeneralSearchHandler=(e)=>{
     setTest(e.target.value)
@@ -23,6 +34,11 @@ console.log('test prevented default')
 setTest('');
 }
 
+
+const categoryListAsync=async ()=>{
+  const categoryList=await axios.get("http://localhost:4230/app/v1/sales/allCategories");
+  return categoryList.data.data.categories;
+}
 
   return <main><section className="filters">
    <div>
@@ -123,11 +139,10 @@ setTest('');
     <label htmlFor="categories" >categories</label>
     <select className="form-control" id="categories">
       <option>--choose--</option>
-      <option>category 1</option>
-      <option>category 2</option>
-      <option>category 3</option>
-      <option>category 4</option>
-      
+      {categoryList.map(el=>{
+        const {_id,name,description}=el;
+        return <option key={_id}>{name} , {description}</option>
+      })}
     </select>
   </div>
 

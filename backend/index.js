@@ -1,20 +1,17 @@
-const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const routeUrls = require("./routes/route");
-const cors = require("cors");
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
-dotenv.config({ path: "./config.env" });
+
+
+dotenv.config({ path: './config.env' });
+
+const app = require('./app');
 
 // mongoose.connect(process.env.DATABASE_ACCESS, () => {
 //   console.log("Database connected");
 // });
 
-//middlewares
-app.use(express.json());
-app.use(cors());
-app.use("/app", routeUrls);
+console.log('in Index.js')
 
 mongoose
   .connect(
@@ -33,3 +30,4 @@ mongoose
 
 const PORT = 4230;
 app.listen(PORT, () => console.log(`server is up and running on port ${PORT}`));
+
