@@ -17,6 +17,7 @@ const [salesPercent,setSalesPercent]=useState('');
 const [startDate, setStartDate] = useState(new Date());
 const [endDate, setEndDate] = useState(new Date());
 const [categoryList,setCategoryList]=useState([]);
+const [chosenCategory,setChosenCategory]=useState([]);
 const [productGroup,setproductGroup]=useState([]);
 const [designer,setDesigner]=useState([]);
 const [ageGroup,setAgeGroup]=useState([]);
@@ -51,6 +52,10 @@ const changeKidzieIdHandler=(e)=>{
 
 const changeSalesPercentHandler=(e)=>{
   setSalesPercent(e.target.value);
+}
+
+const handleCategoryChanged=(e)=>{
+  console.log(e.target.value)
 }
 
 const clear=()=>{
@@ -130,7 +135,7 @@ const ageGroupListAsync=async()=>{
       <option>--choose--</option>
       {productGroup.map(el=>{
         const {_id,name,description}=el;
-        return <option key={_id}>{name} , {description}</option>
+        return <option key={_id} value={_id} >{name} , {description}</option>
       })}
     </select>
   </div>
@@ -150,7 +155,8 @@ const ageGroupListAsync=async()=>{
       <option>--choose--</option>
       {ageGroup.map(el=>{
         const {_id,name,description}=el;
-        return <option key={_id}>{name} , {description}</option>
+        //console.log(el);
+        return <option key={_id} value={_id} >{name} , {description}</option>
       })}
     </select>
   </div>
@@ -178,7 +184,7 @@ const ageGroupListAsync=async()=>{
       <option>--choose--</option>
       {designer.map(el=>{
         const {_id,name,description}=el;
-        return <option key={_id}>{name} , {description}</option>
+        return <option key={_id} value={_id} >{name} , {description}</option>
       })}
       
     </select>
@@ -186,11 +192,11 @@ const ageGroupListAsync=async()=>{
 
   <div className="form-group col-md-6 mb-3">
     <label htmlFor="categories" >categories</label>
-    <select className="form-control" id="categories">
+    <select className="form-control" id="categories" onChange={handleCategoryChanged}>
       <option>--choose--</option>
       {categoryList.map(el=>{
         const {_id,name,description}=el;
-        return <option key={_id}>{name} , {description}</option>
+        return <option key={_id} value={_id} >{name} , {description}</option>
       })}
     </select>
   </div>
